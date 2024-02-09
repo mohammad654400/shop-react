@@ -5,12 +5,11 @@ import Header from "./Header/header";
 import Brands from "./Brands/brands";
 import Title from "./Title/title";
 import FilterItem from "./FilterItems/filterItems";
-import shopItems from "./ShopItems/shopItems";
-import { useState } from "react";
 import ShopList from "./ShopList/shopList";
+import { useState } from "react";
 
 function App() {
-  const [shopItems, _, loading] = useAxios({
+  const [shopItems, _, loading, deleteItem, reloadItems] = useAxios({
     url: "/product",
   });
 
@@ -18,7 +17,7 @@ function App() {
     if (loading) {
       return "<Loading />";
     }
-    if (shopItems?.length == 0) {
+    if (!shopItems || shopItems.length === 0) {
       return (
         <div>
           <p>هیچ آیتمی یافت وجود ندارد</p>
@@ -26,8 +25,15 @@ function App() {
       );
     }
     console.log("shopItems", shopItems);
-    return <ShopList shopItems={shopItems} />;
+    return (
+      <ShopList
+        shopItems={shopItems}
+        reloadItems={reloadItems}
+        deleteItem={deleteItem}
+      />
+    );
   };
+
   return (
     <>
       <Menu></Menu>

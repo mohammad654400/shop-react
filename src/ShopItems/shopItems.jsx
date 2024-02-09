@@ -1,18 +1,13 @@
 import "./shopItem.css";
-import useAxios from "../useAxios";
-const ShopItems = ({ name, price, type, imageFileName, id }) => {
- 
 
-  const [_,__,____,deleteItems] = useAxios({
-    url: `/product/${id}`,method:"DELETE"
-    
-  });
+const ShopItems = ({ name, price, type, imageFileName, id, deleteItem }) => {
   function handleDelete() {
-   deleteItems()
+    deleteItem(id);
   }
+
   return (
     <>
-      <div className="card-img ">
+      <div className="card-img">
         <img className="img" src={imageFileName} alt="" />
       </div>
       <div className="card-title-row">
@@ -32,4 +27,5 @@ const ShopItems = ({ name, price, type, imageFileName, id }) => {
     </>
   );
 };
+
 export default ShopItems;

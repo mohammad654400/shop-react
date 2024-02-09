@@ -6,28 +6,25 @@ const instance = axios.create({
 });
 
 const useAxios = (axiosParams) => {
-  const [response, setRespone] = useState(null);
+  const [response, setResponse] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     try {
       const result = await instance.request(axiosParams);
-      console.log("aran", result);
-      setRespone(result.data.data);
-      console.log(result);
+      setResponse(result.data.data);
     } catch (error) {
       setError(error);
     } finally {
       setLoading(false);
     }
   };
-  const deleteData = async () => {
+
+  const deleteItem = async (id) => {
     try {
-      const result = await instance.request(axiosParams);
-      console.log("aran", result);
-      setRespone(result.data.data);
-      console.log(result);
+      await instance.delete(`/product/${id}`);
+      fetchData();
     } catch (error) {
       setError(error);
     } finally {
@@ -39,6 +36,7 @@ const useAxios = (axiosParams) => {
     fetchData();
   }, [axiosParams.url]);
 
-  return [response, error, loading, deleteData];
+  return [response, error, loading, deleteItem, fetchData];
 };
+
 export default useAxios;
