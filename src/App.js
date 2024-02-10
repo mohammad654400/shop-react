@@ -6,7 +6,7 @@ import Brands from "./Brands/brands";
 import Title from "./Title/title";
 import FilterItem from "./FilterItems/filterItems";
 import ShopList from "./ShopList/shopList";
-import { useState } from "react";
+import ShopItemPage from "./ShopItemPage/ShopItemPage";
 
 function App() {
   const [shopItems, _, loading, deleteItem, reloadItems] = useAxios({
@@ -43,7 +43,11 @@ function App() {
         <Brands></Brands>
         <Title></Title>
         <FilterItem></FilterItem>
-        <div style={{ width: "80%" }}>{renderContent()}</div>
+        <div style={{ width: "80%" }}>
+          {renderContent()}
+
+          <ShopItemPage />
+        </div>
       </main>
     </>
   );
