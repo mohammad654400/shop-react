@@ -4,15 +4,22 @@ import "./index.css";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ShopItemPage from "./ShopItemPage/ShopItemPage";
+import Home from "./Home/home";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-  },
-  {
-    path: "/shopitem/:itemId",
-    element: <ShopItemPage />,
+    children: [
+      {
+        path: "/home",
+        element: <Home />,
+      },
+      {
+        path: "/shopitem/:itemId",
+        element: <ShopItemPage />,
+      },
+    ],
   },
 ]);
 
