@@ -5,7 +5,6 @@ import Brands from "../Brands/brands";
 import Title from "../Title/title";
 import FilterItem from "../FilterItems/filterItems";
 import ShopList from "../ShopList/shopList";
-import ShopItemPage from "../ShopItemPage/ShopItemPage";
 const Home = () => {
   const [shopItems, _, loading, deleteItem, reloadItems] = useAxios({
     url: "/product",
@@ -39,6 +38,7 @@ const Home = () => {
 
       <main>
         <Brands></Brands>
+        
         <Title></Title>
         <FilterItem></FilterItem>
         <div style={{ width: "80%" }}>{renderContent()}</div>
