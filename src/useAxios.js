@@ -22,7 +22,7 @@ const useAxios = (axiosParams) => {
   };
 
   const deleteItem = async (id) => {
-    try {
+    try { 
       await instance.delete(`/product/${id}`);
       fetchData();
     } catch (error) {
